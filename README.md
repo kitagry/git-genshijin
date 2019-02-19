@@ -4,7 +4,7 @@
 ## Install
 
 ```
-$ git get -u github.com/kitagry/git-genshijin
+$ go get github.com/kitagry/git-genshijin
 ```
 
 ## Usage
