@@ -7,6 +7,7 @@ import (
 
 	"github.com/kitagry/genshijin"
 	"github.com/spf13/cobra"
+	"github.com/tcnksm/go-gitconfig"
 	git "gopkg.in/src-d/go-git.v4"
 	"gopkg.in/src-d/go-git.v4/plumbing/object"
 )
@@ -57,10 +58,14 @@ func GenshiCommit(cmd *cobra.Command, args []string) {
 		os.Exit(-1)
 	}
 
+	userName, _ := gitconfig.Username()
+	email, _ := gitconfig.Email()
+
 	commit, err := w.Commit(genshijin.ToGenshijin(message), &git.CommitOptions{
 		Author: &object.Signature{
-			Name: "ゲンシジン",
-			When: time.Now(),
+			Name:  userName,
+			Email: email,
+			When:  time.Now(),
 		},
 	})
 	if err != nil {
